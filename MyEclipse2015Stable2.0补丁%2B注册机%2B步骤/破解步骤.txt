@@ -1,0 +1,38 @@
+首先带上之前Stable1.0的破解步骤
+http://tieba.baidu.com/p/3568215579?fr=ala0&pstaala=2
+
+
+注册机我拿源码改了一下，屏蔽了ReplaceJarFile，大家破解就手动吧（主要是替换Jar包那里我懒得改了，也没那个时间）
+*注意算号器的作者不是本人，我只是修改了一下，顺便膜拜下作者（别问我作者是谁，我不记得了，源码是1年多以前找到的）
+
+
+下面开始本次Stable2.0的破解步骤（其实和1.0一样，大概写一下，就不重新截图了）
+
+0.先说一下Usercode需要自己填写，这个随意
+    然后SystemId需要点击按键生成——这个如果提示 Cannot find JNIWrapper native library (jniwrap.dll) in java.library.path:
+    这样的错误，不要紧，再点一下应该就出来了，还是没有的话请注意权限问题（主要是Mac和Linux）
+  还有就是破解之前请不要开启你的MyEclipse，要保持刚安装完的状态，如果你已经开过了，卸载重装吧——否则你就会遭遇打开编译器，然后校验失败，报错关闭
+  工作空间需要用新的，不要用旧版本的了——如果你是Stable1.0破解过，正常用的工作空间也可以
+
+1.请确定你的算号器，也就是myeclipse2015_keygen文件夹中有privateKey.bytes（传说中的私钥）和publicKey.bytes（传说中的公钥），如果我的压缩包你解压以后没删过东西应该是有的
+2.请确定你没有点过算号器的RebuildKey，保证公钥和私钥没有被换过
+
+3.满足上述条件请略过第三步；如果上述条件不满足，也没关系，就是麻烦一点儿——
+    3.1首先点击RebuildKey，重新生成公钥和私钥
+    3.2用winrar打开 com.genuitec.eclipse.server.core_XXXXXXXX.jar 这个jar包，用新生成的publicKey.bytes替换进去（路径是com\genuitec\eclipse\server\core），替换完不要做其他操作，关闭就好
+    3.3然后可以进行后面的步骤了（注意做完第三步不要再手贱去点RebuildKey了，点一次就要重新进行一下3~7步，因为要保证生成注册码时候的密钥和jar包里的一致）
+
+4.选择版本——算号器我添加了Bling版的，大家懂的
+5.在算号器填好Usercode，并生成了SystemId后，点Active
+6.点SaveProperites把注册码保存到文件，这样就不用手动填了——如果有以前版本的，想要多版本共存，请看后面吧
+7.把补丁包（patch）里的plugins复制到MyEclipse的plugins覆盖原文件（可以参考1.0的破解步骤里面的图）
+    *Mac用户注意：Mac版的插件目录在MyEclipse 2015.app/Contents/Profile/plugins，替换时候请注意要选合并，不是覆盖（覆盖会把整个文件夹替换掉，不该删的都没了，后果自己脑补吧）
+8.最后一步，MyEclipse的plugins/com.genuitec.eclipse.mobile.phonegap.core_13.0.0.me201504281437这个文件夹中，bin/com/genuitec/eclipse/mobile/phonegap/core/internal 以及 com/genuitec/eclipse/mobile/phonegap/core/internal 里面，都要删除 PhonegapProjectManagerImpl$1.class 和 PhonegapProjectManagerImpl$2.class，一共4个内部类，切记一定要删掉（参考http://tieba.baidu.com/p/3565112704?pid=64089385838&cid=0#64089385838）
+
+接下来就可以用了
+
+
+想要多版本共存的，有两种方法，一种是备份 .myeclipse.properties 这个文件（保存的注册信息），然后根据你想要用的版本去换
+另一种办法一劳永逸的，使用同一个公钥（publicKey.bytes）替换掉各版本的com.genuitec.eclipse.server.core_XXXXXXXX.jar包中的对应文件，这种办法需要各版本MyEclipse都是同一种授权的，比如都是Professional，都是Bling之类的
+
+注意点我都写在步骤里了，大家认真看，看明白了再动手，完全按照我给的步骤，不会出现各种奇葩问题的（比如还是会报校验错误，比如Web工程不能新建，比如视图问题）
