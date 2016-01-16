@@ -1,0 +1,1 @@
+-Dlog4j.configuration=StageServerLog4j.properties -Dapp.home=/Users/DD -Druntime.env=other -Dapp.startDate=2015-4-10
